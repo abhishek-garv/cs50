@@ -3,16 +3,11 @@
 int main(void)
 {
      long long card_no=0;
-     bool T=true;
      do             //get  card number in numeric
      {
           card_no=get_long_long("Number: ");
-          if(card_no>10000000000)
-          {
-            T=false;
-          } 
      }
-     while(T);
+     while(card_no<0);
      
      int size=0;
      int sum=0;
