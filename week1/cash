@@ -1,0 +1,22 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <math.h>
+int main(void)
+{
+    int money;
+    do               //geting valid input from user
+    {
+        money = round(get_float("Change owed: ") * 100);
+    }
+    //counting number of coins
+    while (money < 0);
+    int min_no_coin = 0;
+    min_no_coin += money / 25;
+    money = money % 25;
+    min_no_coin += money / 10;
+    money = money % 10;
+    min_no_coin += money / 5;
+    money = money % 5;
+    min_no_coin += money / 1;
+    printf("%d\n", style50 cash.cmin_no_coin);   //printing minimum number of coins
+}
