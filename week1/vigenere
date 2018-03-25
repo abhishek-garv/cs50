@@ -1,0 +1,76 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main(int argc, string argv[])
+{
+    bool T = true;
+    if (argc == 2)
+    {
+        for (int i = 0; i < strlen(argv[1]); i++)     //check key is valied or not
+        {
+            if (!isalpha((argv[1])[i]))
+            {
+                T = false;
+            }
+        }
+        if (T)
+        {
+            string key = argv[1];
+            string str = get_string("plaintext:  ");  //geting input text from user
+            int j = 0;
+            for (int i = 0; i  < strlen(str); i++)
+            {
+                if (j >= strlen(key))
+                {
+                    j = 0;
+                }
+                int val;
+                if (key[j] < 91)
+                {
+                    val = 65;
+                }
+                else
+                {
+                    val = 97;
+                }
+                if (str[i] >= 'A' && str[i] <= 'Z')    //checking charecter in str is uppercase
+                {
+                    if ((int)str[i] + (int)key[j] - val > 90)
+                    {
+                        str[i] = (int)str[i] + (int)key[j] - val - 26;//encrypting the charector of message
+                    }
+                    else
+                    {
+                        str[i] = (int)str[i] + (int)key[j] - val;
+                    }
+                    j++;
+                }
+                else if (str[i] >= 'a' && str[i] <= 'z')   //checking charecter in str is in lowercase
+                {
+                    if ((int)str[i] + (int)key[j] - val > 122)//encrypting the charecter of message
+                    {
+                        str[i] = (int)str[i] + (int)key[j] - val - 26;
+                    }
+                    else
+                    {
+                        str[i] = (int)str[i] + (int)key[j] - val;
+                    }
+                    j++;
+                }
+            }
+            printf("ciphertext: %s\n", str);
+        }
+        else
+        {
+            printf("Usage: ./vigenere k\n");   //printing error message
+            return 1;
+        }
+    }
+    else
+    {
+        printf("Usage: ./vigenere k\n");   //printing error message
+        return 1;
+    }
+    return 0;
+}
